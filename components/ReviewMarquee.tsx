@@ -1,41 +1,57 @@
-"use client";
+import React from 'react';
 
-import { useEffect, useState } from "react";
+const reviewsData = [
+  { id: 1, avatar: 'N', name: 'Nethmi', text: "The ambiance was incredible, and the spicy crab was the best I've had in the city.", target: 'Reviewed Sundara by the Sea' },
+  { id: 2, avatar: 'R', name: 'Ravindu', text: "Genuinely the closest thing to my grandmother's kottu I've found outside a home kitchen.", target: 'Reviewed Colombo Kade' },
+  { id: 3, avatar: 'A', name: 'Amaya', text: "Booked for a birthday and they remembered the sea view request without being asked twice.", target: 'Reviewed Cinnamon & Salt' },
+  { id: 4, avatar: 'D', name: 'Dinesh', text: "Kola kanda at 7am, still warm, still cheap, still the best way to start a Sunday.", target: 'Reviewed Kola Kanda House' },
+];
 
 export default function ReviewMarquee() {
-  const reviews = [
-    { id: 1, text: "Absolutely stunning ambiance!", author: "Sarah L.", rating: 5 },
-    { id: 2, text: "Best crab I have ever had.", author: "Mike T.", rating: 5 },
-    { id: 3, text: "Great service and authentic flavors.", author: "Devi M.", rating: 5 },
-    { id: 4, text: "A hidden gem in the city.", author: "John D.", rating: 5 },
-  ];
-
   return (
-    <section className="py-12 bg-amber-50 overflow-hidden">
-      <h2 className="text-2xl font-bold mb-6 text-center">Community Reviews</h2>
-      <div className="relative w-full flex overflow-x-hidden">
-        {/* Simple CSS animation for marquee effect */}
-        <div className="flex whitespace-nowrap animate-marquee">
-          {reviews.concat(reviews).map((review, i) => (
-            <div key={`${review.id}-${i}`} className="mx-4 bg-white p-4 rounded-lg shadow w-80 inline-block shrink-0">
-              <div className="flex text-amber-500 mb-2">
-                {Array(review.rating).fill('★').join('')}
+    <section className="bg-teal-deep text-cream overflow-hidden py-[88px] max-sm:py-[56px]">
+      <style>{`
+        @keyframes scrollReviews {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .animate-scrollReviews {
+          animation: scrollReviews 42s linear infinite;
+        }
+      `}</style>
+
+      <div className="max-w-[1240px] mx-auto px-[32px] max-lg:px-[20px]">
+        <div className="mb-[44px]">
+          <h2 className="text-[clamp(1.6rem,2.6vw,2.1rem)] tracking-[-0.01em] font-display font-semibold">
+            Fresh off the table: recent reviews
+          </h2>
+          <p className="text-cream/65 text-[1rem] mt-[10px] max-w-[48ch]">
+            What diners are saying, right now.
+          </p>
+        </div>
+      </div>
+
+      <div className="overflow-hidden -mx-[32px] px-[32px]" style={{ WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)' }}>
+        <div className="flex gap-[20px] w-max animate-scrollReviews hover:[animation-play-state:paused]">
+          {/* We render the array twice for the seamless looping effect */}
+          {[...reviewsData, ...reviewsData].map((review, index) => (
+            <div key={index} className="w-[340px] flex-none bg-cream/5 border border-line-light rounded-m p-[24px]">
+              <div className="flex items-center gap-[12px] mb-[14px]">
+                <div className="w-[38px] h-[38px] rounded-full bg-turmeric text-ink flex items-center justify-center font-bold text-[0.95rem] shrink-0">
+                  {review.avatar}
+                </div>
+                <div className="font-bold text-[0.95rem]">{review.name}</div>
               </div>
-              <p className="italic text-gray-700 mb-2">&quot;{review.text}&quot;</p>
-              <p className="text-sm font-semibold text-right">- {review.author}</p>
+              <p className="text-[0.94rem] text-cream/85 leading-[1.6] mb-[14px]">
+                {review.text}
+              </p>
+              <span className="text-[0.84rem] text-turmeric font-semibold">
+                {review.target}
+              </span>
             </div>
           ))}
         </div>
       </div>
-      <style jsx>{`
-        .animate-marquee {
-          animation: marquee 25s linear infinite;
-        }
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
     </section>
   );
 }

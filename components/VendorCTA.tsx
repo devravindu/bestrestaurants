@@ -1,18 +1,25 @@
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 export default function VendorCTA() {
   return (
-    <section className="w-full bg-amber-500 text-gray-900 py-16 px-4 text-center">
-      <h2 className="text-3xl font-bold mb-4">Are you a Restaurant Owner?</h2>
-      <p className="text-lg mb-8">
-        Join our platform to manage your listing, connect with customers, and grow your business.
-      </p>
-      <Link
-        href="/onboarding"
-        className="bg-gray-900 text-white px-6 py-3 rounded-md font-semibold hover:bg-gray-800 transition"
-      >
-        Get Started Now
-      </Link>
+    <section className="bg-chili text-cream py-[70px]">
+      <div className="max-w-[1240px] mx-auto px-[32px] max-lg:px-[20px] flex items-center justify-between gap-[32px] flex-wrap max-lg:flex-col max-lg:items-start">
+        <div>
+          <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-display font-semibold max-w-[14ch]">
+            Are you a restaurant owner?
+          </h2>
+          <p className="mt-[12px] text-[1.02rem] text-cream/90 max-w-[44ch]">
+            Claim your listing, connect with thousands of diners, and grow your business today.
+          </p>
+        </div>
+        <Link 
+          href="#" 
+          className="inline-flex items-center justify-center gap-[8px] font-bold text-[0.92rem] py-[11px] px-[20px] rounded-s bg-ink text-cream hover:bg-black transition-colors shrink-0"
+        >
+          Claim your business — it's free
+        </Link>
+      </div>
     </section>
   );
 }
