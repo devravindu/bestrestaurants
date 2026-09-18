@@ -1,13 +1,22 @@
-// proxy.ts
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { withAuth } from "next-auth/middleware";
 
-// 1. Rename the exported function to 'proxy'
-export function proxy(request: NextRequest) {
-  return NextResponse.next();
-}
+// Wrap NextAuth's logic and export it strictly as 'proxy'
+export const proxy = withAuth({
+  callbacks: {
+    authorized: ({ req, token }) => {
+      const isProtectedRoute = 
+        req.nextUrl.pathname.startsWith("/dashboard") || 
+        req.nextUrl.pathname.startsWith("/admin");
+      
+      if (isProtectedRoute) {
+        return !!token; // Require a session for these routes
+      }
+      return true; // Let them through for public pages like /login or /
+    },
+  },
+});
 
-// 2. Keep your existing matcher config if present
+// We can optimize your matcher to only run this proxy on the routes we care about protecting
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/dashboard/:path*", "/admin/:path*"],
 };

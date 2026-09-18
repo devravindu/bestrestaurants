@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Public_Sans } from "next/font/google";
 import "./globals.css";
+import { Providers } from "@/components/Providers";
 
 // Configure the Fraunces display font
 const fraunces = Fraunces({
@@ -36,7 +37,9 @@ export default function RootLayout({
       <body
         className={`${fraunces.variable} ${publicSans.variable} font-body bg-paper text-ink antialiased`}
       >
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
