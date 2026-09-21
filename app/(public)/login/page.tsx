@@ -1,23 +1,60 @@
 "use client";
 
-import React from 'react';
+import React, { useState, Suspense } from 'react';
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function LoginPage() {
+function LoginContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleGoogleLogin = () => {
-    signIn('google', { callbackUrl: '/' });
+    signIn('google', { callbackUrl });
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+
+    const result = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (result?.error) {
+      setErrorMessage("Invalid email or password. Please try again.");
+      setStatus('idle');
+    } else if (result?.ok) {
+      router.refresh();
+      router.push(callbackUrl);
+    }
   };
 
   return (
-    <div className="min-h-[75vh] flex items-center justify-center p-[20px]">
-      <div className="bg-cream rounded-m shadow-[0_24px_48px_-20px_rgba(0,0,0,0.15)] border border-line w-full max-w-[400px] p-[40px] text-center">
-        <h1 className="font-display text-[2rem] font-semibold mb-[8px]">Welcome</h1>
-        <p className="text-ink/60 text-[0.95rem] mb-[32px]">
-          Log in or create a new account to continue.
-        </p>
+    <div className="min-h-[80vh] flex items-center justify-center p-[20px]">
+      <div className="bg-cream rounded-m shadow-[0_24px_48px_-20px_rgba(0,0,0,0.15)] border border-line w-full max-w-[440px] p-[40px]">
+        
+        <div className="text-center mb-[28px]">
+          <h1 className="font-display text-[2rem] font-semibold mb-[8px]">Welcome back</h1>
+          <p className="text-ink/60 text-[0.95rem]">
+            Sign in to manage your account and reviews.
+          </p>
+        </div>
+
+        {/* Google Login Button */}
         <button 
           onClick={handleGoogleLogin}
-          className="w-full inline-flex items-center justify-center gap-[10px] font-bold text-[1rem] py-[13px] px-[20px] rounded-s bg-ink text-cream hover:bg-black transition-colors"
+          type="button"
+          className="w-full inline-flex items-center justify-center gap-[10px] font-bold text-[1rem] py-[12px] px-[20px] rounded-s bg-white border border-line text-ink hover:bg-paper transition-colors mb-[24px]"
         >
           <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24">
             <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -27,7 +64,77 @@ export default function LoginPage() {
           </svg>
           Continue with Google
         </button>
+
+        <div className="relative flex items-center mb-[24px]">
+          <div className="flex-grow border-t border-line"></div>
+          <span className="flex-shrink-0 mx-[14px] text-ink/40 text-[0.85rem] font-medium uppercase tracking-wider">Or log in with email</span>
+          <div className="flex-grow border-t border-line"></div>
+        </div>
+
+        <form onSubmit={handleLogin} className="flex flex-col gap-[16px]">
+          {errorMessage && (
+            <div className="bg-chili/10 border border-chili text-chili p-[12px] rounded-s text-[0.85rem] font-medium">
+              {errorMessage}
+            </div>
+          )}
+
+          <div className="flex flex-col gap-[6px]">
+            <label htmlFor="email" className="text-[0.85rem] font-bold text-teal">Email Address</label>
+            <input 
+              id="email"
+              type="email" 
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-teal transition-colors disabled:opacity-50"
+              disabled={status === 'loading'}
+            />
+          </div>
+
+          <div className="flex flex-col gap-[6px]">
+            <div className="flex items-center justify-between">
+              <label htmlFor="password" className="text-[0.85rem] font-bold text-teal">Password</label>
+              <Link href="#" className="text-[0.8rem] text-teal hover:underline font-medium">
+                Forgot password?
+              </Link>
+            </div>
+            <input 
+              id="password"
+              type="password" 
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-teal transition-colors disabled:opacity-50"
+              disabled={status === 'loading'}
+            />
+          </div>
+          
+          <button 
+            type="submit" 
+            disabled={status === 'loading' || !email || !password}
+            className="w-full inline-flex items-center justify-center font-bold text-[1rem] py-[13px] px-[20px] rounded-s bg-ink text-cream hover:bg-black transition-colors disabled:opacity-70 mt-[8px]"
+          >
+            {status === 'loading' ? 'Signing in...' : 'Sign In'}
+          </button>
+        </form>
+
+        <p className="text-center text-[0.9rem] text-ink/70 mt-[24px]">
+          New to BestRestaurant.lk?{' '}
+          <Link href="/register" className="font-bold text-teal hover:underline">
+            Create an account
+          </Link>
+        </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[80vh] flex items-center justify-center">Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

@@ -1,23 +1,36 @@
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-// Make sure this points to your actual auth options if you exported them, 
-// or we can just fetch the raw session.
-// For now, we'll use a simpler server-side check.
+import { PrismaClient } from "@prisma/client";
+import Header from "@/components/Header";
+
+const prisma = new PrismaClient();
 
 export default async function DashboardPage() {
   const session = await getServerSession();
 
-  // Double-checking security on the server side
-  if (!session) {
+  if (!session?.user?.email) {
     redirect("/login");
   }
 
-  // NextAuth token passes the role we set in route.ts
-  const userRole = (session.user as any)?.role || "USER";
-  const firstName = session.user?.name?.split(" ")[0] || "there";
+  // Fetch fresh data directly from the database to bypass stale session cookies
+  const dbUser = await prisma.user.findUnique({
+    where: { email: session.user.email },
+    include: {
+      restaurants: true, // Pull the restaurant they just created
+    }
+  });
+
+  if (!dbUser) {
+    redirect("/login");
+  }
+
+  const userRole = dbUser.role; // Always accurate database role
+  const firstName = dbUser.name?.split(" ")[0] || "there";
+  const myRestaurant = dbUser.restaurants[0]; // Get their first listed restaurant
 
   return (
+
     <div className="min-h-screen bg-paper p-[32px] max-w-[1240px] mx-auto">
       <header className="mb-[40px]">
         <h1 className="font-display text-[2.5rem] font-bold text-ink mb-[8px]">
@@ -45,19 +58,33 @@ export default async function DashboardPage() {
       )}
 
       {userRole === "VENDOR" && (
-        <div className="grid grid-cols-3 gap-[24px]">
-          {/* We will build the actual vendor stats here next */}
-          <div className="bg-cream border border-line p-[24px] rounded-m">
-            <h3 className="font-bold text-teal mb-[8px]">Total Views</h3>
-            <p className="text-[2rem] font-display font-bold">1,248</p>
+        <div>
+          {/* Displaying the actual data we just saved! */}
+          <div className="mb-[32px] p-[24px] bg-teal/10 border border-teal rounded-m flex justify-between items-center">
+            <div>
+              <h2 className="font-bold text-[1.2rem] text-teal mb-[4px]">
+                Active Property: {myRestaurant?.name || "Your Restaurant"}
+              </h2>
+              <p className="text-[0.95rem] text-ink/70">{myRestaurant?.location}</p>
+            </div>
+            <span className="bg-teal text-white text-[0.75rem] font-bold px-[12px] py-[4px] rounded-full uppercase tracking-wider">
+              {myRestaurant?.status}
+            </span>
           </div>
-          <div className="bg-cream border border-line p-[24px] rounded-m">
-            <h3 className="font-bold text-teal mb-[8px]">Average Rating</h3>
-            <p className="text-[2rem] font-display font-bold">4.8 ⭐️</p>
-          </div>
-          <div className="bg-cream border border-line p-[24px] rounded-m">
-            <h3 className="font-bold text-teal mb-[8px]">Active Listings</h3>
-            <p className="text-[2rem] font-display font-bold">1</p>
+
+          <div className="grid grid-cols-3 gap-[24px]">
+            <div className="bg-cream border border-line p-[24px] rounded-m shadow-soft">
+              <h3 className="font-bold text-teal mb-[8px]">Total Views</h3>
+              <p className="text-[2.2rem] font-display font-bold">0</p>
+            </div>
+            <div className="bg-cream border border-line p-[24px] rounded-m shadow-soft">
+              <h3 className="font-bold text-teal mb-[8px]">Average Rating</h3>
+              <p className="text-[2.2rem] font-display font-bold">0.0 <span className="text-[1.2rem]">⭐️</span></p>
+            </div>
+            <div className="bg-cream border border-line p-[24px] rounded-m shadow-soft">
+              <h3 className="font-bold text-teal mb-[8px]">Active Listings</h3>
+              <p className="text-[2.2rem] font-display font-bold">1</p>
+            </div>
           </div>
         </div>
       )}

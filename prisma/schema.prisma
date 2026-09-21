@@ -50,6 +50,9 @@ model Restaurant {
   slug                String               @unique
   description         String?
   location            String
+  phone               String?
+  website             String?
+  workingHours        String?   // We can store this as a formatted string or JSON later
   lat                 Float?
   lng                 Float?
   brandPrimaryColor   String?
