@@ -52,6 +52,7 @@ model Restaurant {
   location            String
   phone               String?
   website             String?
+  category            String?
   workingHours        String?   // We can store this as a formatted string or JSON later
   lat                 Float?
   lng                 Float?
