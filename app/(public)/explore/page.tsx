@@ -1,100 +1,78 @@
-import { PrismaClient, Prisma } from '@prisma/client';
+import Link from "next/link";
+import Image from "next/image";
+import prisma from "@/lib/prisma";
+import { Status } from "@prisma/client";
 
-const prisma = new PrismaClient();
+export default async function ExplorePage() {
+  // Fetch all active restaurants, ordered by highest rating first
+  const restaurants = await prisma.restaurant.findMany({
+    where: { status: Status.ACTIVE }, 
+    orderBy: { avgRating: "desc" },
+  });
 
-export default async function ExplorePage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
-  // Await searchParams in Next.js 15+
-  const params = await searchParams;
-  const q = params.q as string;
-  const loc = params.loc as string;
-  const category = params.category as string;
+ return (
+    <main className="min-h-screen bg-paper py-[60px]">
+      <div className="max-w-[1200px] mx-auto px-[20px] md:px-[40px]">
+        <header className="mb-[40px]">
+          <h1 className="text-[3rem] font-display font-bold text-ink mb-[12px]">
+            Discover Great Food
+          </h1>
+          <p className="text-ink/70 text-[1.1rem]">
+            Find the best dining experiences reviewed by local foodies.
+          </p>
+        </header>
 
-  // Build the query where clause
-  const whereClause: Prisma.RestaurantWhereInput = { status: 'APPROVED' };
-
-  if (q) {
-    whereClause.OR = [
-      { name: { contains: q, mode: 'insensitive' } },
-      { description: { contains: q, mode: 'insensitive' } },
-    ];
-  }
-
-  if (loc) {
-    whereClause.location = { contains: loc, mode: 'insensitive' };
-  }
-
-  if (category) {
-    // Basic filter for category
-    whereClause.taxonomies = {
-      some: {
-        taxonomy: {
-          slug: category
-        }
-      }
-    };
-  }
-
-  type RestaurantWithTaxonomies = Prisma.RestaurantGetPayload<{
-    include: { taxonomies: { include: { taxonomy: true } } }
-  }>;
-
-  // Use try-catch to handle empty database during build
-  let restaurants: RestaurantWithTaxonomies[] = [];
-  try {
-    restaurants = await prisma.restaurant.findMany({
-      where: whereClause,
-      include: {
-        taxonomies: {
-          include: {
-            taxonomy: true,
-          }
-        }
-      }
-    });
-  } catch (e) {
-    console.error("Database query failed", e);
-  }
-
-  return (
-    <div className="min-h-screen p-8 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Explore Restaurants</h1>
-
-      {(q || loc || category) && (
-        <div className="mb-6 text-gray-600">
-          Showing results for:
-          {q && <span className="font-semibold ml-2">Query: &quot;{q}&quot;</span>}
-          {loc && <span className="font-semibold ml-2">Location: &quot;{loc}&quot;</span>}
-          {category && <span className="font-semibold ml-2">Category: &quot;{category}&quot;</span>}
-        </div>
-      )}
-
-      {restaurants.length === 0 ? (
-        <p className="text-gray-500">No restaurants found matching your criteria.</p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {restaurants.map((restaurant) => (
-            <div key={restaurant.id} className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100">
-              <div className="h-40 bg-gray-200 w-full">
-                {/* Image placeholder */}
-              </div>
-              <div className="p-4">
-                <h3 className="font-bold text-lg mb-1">{restaurant.name}</h3>
-                <p className="text-sm text-gray-500 mb-2">{restaurant.location}</p>
-                <div className="flex items-center text-sm font-semibold text-gray-700 mb-3">
-                  <span className="text-amber-500 mr-1">★</span> {restaurant.avgRating} ({restaurant.reviewCount})
+        {restaurants.length === 0 ? (
+          <div className="text-center py-[60px] bg-white rounded-xl border border-line">
+            <p className="text-ink/60 text-[1.1rem]">No active restaurants found. Add one to get started!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
+            {restaurants.map((restaurant) => (
+              <Link 
+                href={`/restaurant/${restaurant.slug}`} 
+                key={restaurant.id}
+                className="group flex flex-col bg-white border border-line rounded-xl overflow-hidden hover:shadow-soft transition-all duration-300"
+              >
+                <div className="relative w-full h-[200px] bg-line/30 overflow-hidden">
+                  {restaurant.heroImageUrl ? (
+                    <Image 
+                      src={restaurant.heroImageUrl} 
+                      alt={restaurant.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-ink/40">
+                      No Image
+                    </div>
+                  )}
+                  <div className="absolute top-[12px] right-[12px] bg-white/90 backdrop-blur-sm px-[10px] py-[4px] rounded-full flex items-center gap-[4px] shadow-sm">
+                    <span className="text-[0.85rem] font-bold text-ink">
+                      {restaurant.avgRating?.toFixed(1) || "0.0"}
+                    </span>
+                    <span className="text-[0.8rem]">⭐️</span>
+                  </div>
                 </div>
-                <a href={`/restaurant/${restaurant.slug}`} className="text-blue-500 text-sm hover:underline">
-                  View Details
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+                
+                <div className="p-[20px] flex flex-col flex-grow">
+                  <h2 className="text-[1.25rem] font-bold text-ink mb-[4px] group-hover:text-teal transition-colors">
+                    {restaurant.name}
+                  </h2>
+                  <p className="text-ink/60 text-[0.85rem] mb-[12px] truncate">
+                    {restaurant.location?.split(',')[0]} {restaurant.category ? `• ${restaurant.category.split(',')[0]}` : ''}
+                  </p>
+                  
+                  <div className="mt-auto pt-[16px] border-t border-line flex justify-between items-center text-[0.85rem] text-ink/70">
+                    <span>{restaurant.reviewCount} reviews</span>
+                    {restaurant.avgPrice && <span className="font-medium">{restaurant.avgPrice}</span>}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
   );
 }

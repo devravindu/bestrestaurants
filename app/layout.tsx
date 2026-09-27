@@ -34,8 +34,8 @@ export default function RootLayout({
         Here is where the magic happens! 
         We inject the font variables and apply your custom bg-paper and text-ink colors globally.
       */}
-      <body
-        className={`${fraunces.variable} ${publicSans.variable} font-body bg-paper text-ink antialiased`}
+      <body suppressHydrationWarning
+        className={`${fraunces.variable} ${publicSans.variable} font-body bg-paper text-ink antialiased` }
       >
         <Providers>
           {children}
