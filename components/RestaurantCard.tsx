@@ -63,7 +63,7 @@ export default function RestaurantCard({
             href={`/restaurant/${id}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full text-center bg-ink text-white font-bold py-[10px] rounded-s hover:bg-black transition-colors"
+            className="block w-full text-center bg-teal-deep text-white font-bold py-[10px] rounded-s hover:bg-black transition-colors"
           >
             View Restaurent
           </Link>

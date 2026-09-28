@@ -80,7 +80,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
         {/* SHARED SIDEBAR FOOTER */}
         <div className="p-[24px] border-t border-line mt-auto flex items-center gap-[12px] hover:bg-black/5 cursor-pointer transition-colors">
-          <div className="w-[32px] h-[32px] bg-ink text-white rounded-full flex items-center justify-center font-bold text-[0.9rem]">
+          <div className="w-[32px] h-[32px] bg-teal-deep text-white rounded-full flex items-center justify-center font-bold text-[0.9rem]">
             {dbUser?.name?.charAt(0) || "U"}
           </div>
           <span className="font-medium text-ink text-[0.9rem]">Settings</span>

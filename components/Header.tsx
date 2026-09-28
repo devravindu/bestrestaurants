@@ -33,7 +33,7 @@ export default function Header() {
         <div className="flex items-center gap-[20px] shrink-0">
           {status === 'loading' ? (
             /* Loading state placeholder */
-            <div className="w-[120px] h-[30px] bg-ink/5 animate-pulse rounded-s"></div>
+            <div className="w-[120px] h-[30px] bg-teal-deep/5 animate-pulse rounded-s"></div>
           ) : session ? (
             /* Logged In State */
             <div className="flex items-center gap-[16px]">
@@ -53,7 +53,7 @@ export default function Header() {
               </button>
               <Link 
                 href="/dashboard" 
-                className="inline-flex items-center justify-center gap-[8px] font-bold text-[0.92rem] py-[11px] px-[20px] rounded-s bg-ink text-cream hover:bg-black transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-[8px] font-bold text-[0.92rem] py-[11px] px-[20px] rounded-s bg-teal-deep text-cream hover:bg-black transition-colors whitespace-nowrap"
               >
                 Dashboard
               </Link>

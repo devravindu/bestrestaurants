@@ -114,7 +114,7 @@ function LoginContent() {
           <button 
             type="submit" 
             disabled={status === 'loading' || !email || !password}
-            className="w-full inline-flex items-center justify-center font-bold text-[1rem] py-[13px] px-[20px] rounded-s bg-ink text-cream hover:bg-black transition-colors disabled:opacity-70 mt-[8px]"
+            className="w-full inline-flex items-center justify-center font-bold text-[1rem] py-[13px] px-[20px] rounded-s bg-teal-deep text-cream hover:bg-black transition-colors disabled:opacity-70 mt-[8px]"
           >
             {status === 'loading' ? 'Signing in...' : 'Sign In'}
           </button>

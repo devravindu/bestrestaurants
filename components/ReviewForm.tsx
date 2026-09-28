@@ -69,7 +69,7 @@ export default function ReviewForm({ restaurantId }: { restaurantId: string }) {
         <button 
           type="submit" 
           disabled={status === 'loading'}
-          className="bg-ink text-white font-bold py-[10px] px-[24px] rounded-s hover:bg-black transition-colors disabled:opacity-70"
+          className="bg-teal-deep text-white font-bold py-[10px] px-[24px] rounded-s hover:bg-black transition-colors disabled:opacity-70"
         >
           {status === 'loading' ? 'Submitting...' : 'Submit Review'}
         </button>

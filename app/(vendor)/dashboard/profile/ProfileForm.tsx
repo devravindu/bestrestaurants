@@ -171,7 +171,7 @@ export default function ProfileForm({ initialData }: { initialData: any }) {
 
           <div className="flex justify-between items-center mt-[32px] pt-[24px] border-t border-line">
             {status === 'success' && <span className="text-teal font-bold text-[0.95rem]">Saved ✓</span>}
-            <button type="submit" disabled={status === 'loading' || isUploading} className="w-full font-bold text-[1rem] py-[12px] px-[24px] rounded-s bg-ink text-cream hover:bg-black transition-colors disabled:opacity-70">
+            <button type="submit" disabled={status === 'loading' || isUploading} className="w-full font-bold text-[1rem] py-[12px] px-[24px] rounded-s bg-teal-deep text-cream hover:bg-black transition-colors disabled:opacity-70">
               {status === 'loading' ? 'Saving...' : 'Save Profile'}
             </button>
           </div>

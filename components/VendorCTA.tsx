@@ -15,7 +15,7 @@ export default function VendorCTA() {
         </div>
         <Link 
           href="#" 
-          className="inline-flex items-center justify-center gap-[8px] font-bold text-[0.92rem] py-[11px] px-[20px] rounded-s bg-ink text-cream hover:bg-black transition-colors shrink-0"
+          className="inline-flex items-center justify-center gap-[8px] font-bold text-[0.92rem] py-[11px] px-[20px] rounded-s bg-teal-deep text-cream hover:bg-black transition-colors shrink-0"
         >
           Claim your business — it's free
         </Link>
