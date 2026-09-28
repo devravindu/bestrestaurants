@@ -1,22 +1,58 @@
-import { withAuth } from "next-auth/middleware";
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
 
-// Wrap NextAuth's logic and export it strictly as 'proxy'
-export const proxy = withAuth({
-  callbacks: {
-    authorized: ({ req, token }) => {
-      const isProtectedRoute = 
-        req.nextUrl.pathname.startsWith("/dashboard") || 
-        req.nextUrl.pathname.startsWith("/admin");
-      
-      if (isProtectedRoute) {
-        return !!token; // Require a session for these routes
-      }
-      return true; // Let them through for public pages like /login or /
-    },
-  },
-});
+export async function proxy(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({
+    request,
+  });
 
-// We can optimize your matcher to only run this proxy on the routes we care about protecting
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) => {
+            request.cookies.set(name, value);
+          });
+
+          supabaseResponse = NextResponse.next({
+            request,
+          });
+
+          cookiesToSet.forEach(({ name, value, options }) => {
+            supabaseResponse.cookies.set(name, value, options);
+          });
+        },
+      },
+    }
+  );
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const isProtectedRoute =
+    request.nextUrl.pathname.startsWith("/dashboard") ||
+    request.nextUrl.pathname.startsWith("/admin");
+
+  if (isProtectedRoute && !user) {
+    const loginUrl = new URL("/login", request.url);
+
+    loginUrl.searchParams.set(
+      "callbackUrl",
+      request.nextUrl.pathname + request.nextUrl.search
+    );
+
+    return NextResponse.redirect(loginUrl);
+  }
+
+  return supabaseResponse;
+}
+
 export const config = {
   matcher: ["/dashboard/:path*", "/admin/:path*"],
 };

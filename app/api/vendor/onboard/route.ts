@@ -1,13 +1,16 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-import { getServerSession } from "next-auth/next";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
+import { createClient } from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession();
-    if (!session?.user?.email) {
+    const supabase = await createClient();
+
+    const {
+      data: { user: supabaseUser },
+    } = await supabase.auth.getUser();
+
+    if (!supabaseUser?.id) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
@@ -15,21 +18,31 @@ export async function POST(req: Request) {
     const { name, description, location, phone } = body;
 
     if (!name || !location) {
-      return NextResponse.json({ message: "Name and location are required." }, { status: 400 });
+      return NextResponse.json(
+        { message: "Name and location are required." },
+        { status: 400 }
+      );
     }
 
-    // Find the currently logged-in user
+    // Find the currently logged-in Prisma user through Supabase UID
     const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
+      where: { supabaseUserId: supabaseUser.id },
     });
 
     if (!user) {
-      return NextResponse.json({ message: "User not found" }, { status: 404 });
+      return NextResponse.json(
+        { message: "User not found" },
+        { status: 404 }
+      );
     }
 
     // Generate a URL-friendly slug from the restaurant name
-    const baseSlug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-    const uniqueSlug = `${baseSlug}-${Math.floor(Math.random() * 1000)}`; 
+    const baseSlug = name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)+/g, "");
+
+    const uniqueSlug = `${baseSlug}-${Math.floor(Math.random() * 1000)}`;
 
     // Create the restaurant AND update the user's role in one transaction
     const [newRestaurant, updatedUser] = await prisma.$transaction([
@@ -41,19 +54,28 @@ export async function POST(req: Request) {
           location,
           phone,
           vendorId: user.id,
-          status: "PENDING", // Matches your schema default
+          status: "PENDING",
         },
       }),
       prisma.user.update({
         where: { id: user.id },
         data: { role: "VENDOR" },
-      })
+      }),
     ]);
 
-    return NextResponse.json({ restaurant: newRestaurant, message: "Welcome to the Vendor Dashboard!" }, { status: 201 });
-    
+    return NextResponse.json(
+      {
+        restaurant: newRestaurant,
+        message: "Welcome to the Vendor Dashboard!",
+      },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Onboarding error:", error);
-    return NextResponse.json({ message: "Internal server error." }, { status: 500 });
+
+    return NextResponse.json(
+      { message: "Internal server error." },
+      { status: 500 }
+    );
   }
 }

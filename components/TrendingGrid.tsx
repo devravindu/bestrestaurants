@@ -63,14 +63,11 @@ export default function TrendingGrid() {
           {trendingData.map((item) => (
             <RestaurantCard
               key={item.id}
-              variant="trending"
+              id={String(item.id)}
               title={item.title}
               location={item.location}
               rating={item.rating}
-              reviewsCount={item.reviewsCount}
-              tags={item.tags}
-              gradientFrom={item.gradientFrom}
-              gradientTo={item.gradientTo}
+              reviewCount={item.reviewsCount}
             />
           ))}
         </div>

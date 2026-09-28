@@ -1,30 +1,43 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { createClient } from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession();
-    console.log("Backend Session Check:", session?.user?.email);
-    
-    if (!session?.user?.email) {
-      return NextResponse.json({ message: "You must be logged in to leave a review." }, { status: 401 });
+    const supabase = await createClient();
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    console.log("Supabase User Check:", user?.email);
+
+    if (!user?.id) {
+      return NextResponse.json(
+        { message: "You must be logged in to leave a review." },
+        { status: 401 }
+      );
     }
 
     const dbUser = await prisma.user.findUnique({
-      where: { email: session.user.email },
+      where: { supabaseUserId: user.id },
     });
 
     if (!dbUser) {
-      return NextResponse.json({ message: "User not found" }, { status: 404 });
+      return NextResponse.json(
+        { message: "User not found" },
+        { status: 404 }
+      );
     }
 
     const body = await req.json();
     const { rating, comment, restaurantId } = body;
 
     if (!rating || !restaurantId) {
-      return NextResponse.json({ message: "Rating and Restaurant ID are required." }, { status: 400 });
+      return NextResponse.json(
+        { message: "Rating and Restaurant ID are required." },
+        { status: 400 }
+      );
     }
 
     // 1. Create the new review in the database
@@ -56,9 +69,19 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ review: newReview, message: "Review submitted successfully." }, { status: 200 });
+    return NextResponse.json(
+      {
+        review: newReview,
+        message: "Review submitted successfully.",
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Review submission error:", error);
-    return NextResponse.json({ message: "Internal server error." }, { status: 500 });
+
+    return NextResponse.json(
+      { message: "Internal server error." },
+      { status: 500 }
+    );
   }
 }

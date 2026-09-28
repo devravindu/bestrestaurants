@@ -1,55 +1,61 @@
 "use client";
 
+import { createClient } from "@/lib/supabase/client";
 import React, { useState } from 'react';
-import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
   const router = useRouter();
+  const supabase = createClient();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleGoogleSignup = () => {
-    signIn('google', { callbackUrl: '/' });
-  };
+  const handleGoogleSignup = async () => {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(
+        "/"
+      )}`,
+    },
+  });
 
+  if (error) {
+    setErrorMessage("Unable to sign up with Google. Please try again.");
+  }
+};
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
     setErrorMessage('');
 
     try {
-      // 1. Send data to our custom registration API
       const res = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
-      });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name, email, password }),
+});
 
-      const data = await res.json();
+const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.message || 'Failed to create account.');
-      }
+if (!res.ok) {
+  throw new Error(data.message || 'Failed to create account.');
+}
 
-      // 2. Automatically log the user in with their new credentials
-      const signInResult = await signIn('credentials', {
-        email,
-        password,
-        redirect: false,
-      });
+setErrorMessage('');
+setStatus('idle');
 
-      if (signInResult?.error) {
-        throw new Error("Account created, but auto-login failed. Please log in manually.");
-      }
+// Supabase requires email confirmation, so don't attempt
+// a NextAuth login here.
+alert(
+  'Account created successfully. Please check your email and confirm your account before logging in.'
+);
 
-      // 3. Force a router refresh to update the Header session, then redirect
-      router.refresh();
-      router.push('/');
+router.push('/login');
       
     } catch (error: any) {
       setErrorMessage(error.message);

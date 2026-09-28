@@ -1,18 +1,22 @@
-import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
+import { createClient } from "@/lib/supabase/server";
 import ProfileForm from "./ProfileForm";
 
 export default async function ProfilePage() {
-  const session = await getServerSession();
+  const supabase = await createClient();
 
-  if (!session?.user?.email) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
     redirect("/login");
   }
 
   const dbUser = await prisma.user.findUnique({
-    where: { email: session.user.email },
-    include: { restaurants: true }
+    where: { supabaseUserId: user.id },
+    include: { restaurants: true },
   });
 
   if (!dbUser || dbUser.restaurants.length === 0) {

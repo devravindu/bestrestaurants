@@ -22,7 +22,6 @@ export default function ProfileForm({ initialData }: { initialData: any }) {
     location: initialData.location || '',
     phone: initialData.phone || '',
     website: initialData.website || '',
-    avgPrice: initialData.avgPrice || '',
     workingHours: initialData.workingHours || '',
     heroImageUrl: initialData.heroImageUrl || '',
   });
@@ -131,10 +130,6 @@ export default function ProfileForm({ initialData }: { initialData: any }) {
         <div className="bg-cream border border-line rounded-m p-[32px]">
           <h2 className="font-bold text-[1.2rem] text-ink mb-[24px]">Dining Details</h2>
           <div className="flex flex-col gap-[20px]">
-            <div className="flex flex-col gap-[6px]">
-              <label className="text-[0.85rem] font-bold text-teal">Average Price</label>
-              <input name="avgPrice" value={formData.avgPrice} onChange={handleChange} placeholder="e.g. LKR 2,500 per person" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal" />
-            </div>
             <div className="flex flex-col gap-[6px]">
               <label className="text-[0.85rem] font-bold text-teal">Opening Hours (Line separated)</label>
               <textarea name="workingHours" rows={4} value={formData.workingHours} onChange={handleChange} placeholder="Mon-Thu: 11:00 AM - 10:00 PM&#10;Fri-Sun: 10:00 AM - 11:30 PM" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal resize-none" />
