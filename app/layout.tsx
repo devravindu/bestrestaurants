@@ -1,22 +1,7 @@
 import type { Metadata } from "next";
-import { Fraunces, Public_Sans } from "next/font/google";
+import { Fraunces, Public_Sans, Geist } from "next/font/google";
 import "./globals.css";
-import { Providers } from "@/components/Providers";
-
-// Configure the Fraunces display font
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-// Configure the Public Sans body font
-const publicSans = Public_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-public-sans",
-  display: "swap",
-});
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "BestRestaurant.lk — Discover Sri Lanka's Ultimate Dining Experiences",
@@ -29,17 +14,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={cn("scroll-smooth", "font-sans")}>
       {/* 
         Here is where the magic happens! 
         We inject the font variables and apply your custom bg-paper and text-ink colors globally.
       */}
       <body suppressHydrationWarning
-        className={`${fraunces.variable} ${publicSans.variable} font-body bg-paper text-ink antialiased` }
+        className={cn("min-h-screen bg-paper font-sans text-ink antialiased")}
       >
-        <Providers>
           {children}
-        </Providers>
       </body>
     </html>
   );

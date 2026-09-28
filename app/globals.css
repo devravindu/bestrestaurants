@@ -1,32 +1,5 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  /* Colors */
-  --color-ink: #201510;
-  --color-teal: #0F3B35;
-  --color-teal-deep: #0A2B27;
-  --color-paper: #F6EEDC;
-  --color-paper-warm: #EFE2C4;
-  --color-turmeric: #DB9E2C;
-  --color-chili: #B23A26;
-  --color-chili-deep: #8F2C1B;
-  --color-cream: #FAF4E6;
-  --color-line: rgba(32,21,16,0.14);
-  --color-line-light: rgba(250,244,230,0.22);
-
-  /* Fonts */
-  --font-display: var(--font-fraunces), serif;
-  --font-body: var(--font-public-sans), sans-serif;
-
-  /* Border Radius */
-  --radius-s: 3px;
-  --radius-m: 6px;
-
-  /* Shadows */
-  --shadow-card: 0 1px 0 rgba(32,21,16,0.06);
-}
-
-/* You can still add standard CSS targeting HTML tags below if needed */
-html {
-  scroll-behavior: smooth;
-}
+/* Leave any of your custom CSS variables here if you had them */
