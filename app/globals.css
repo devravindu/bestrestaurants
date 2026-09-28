@@ -1,5 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Leave any of your custom CSS variables here if you had them */
+@theme {
+  --color-paper: #FFFFFF;
+  --color-ink: #000000;
+  --color-accent: #FC693D;
+  --color-line: #E5E5E5;
+  
+  /* Mapping the Next.js fonts we added to layout.tsx */
+  --font-display: var(--font-fraunces), serif;
+  --font-sans: var(--font-public-sans), sans-serif;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
