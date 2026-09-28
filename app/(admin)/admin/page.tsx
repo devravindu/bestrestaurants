@@ -15,7 +15,7 @@ export default async function AdminDashboard() {
     
     await prisma.restaurant.update({
       where: { id },
-      data: { status: Status.ACTIVE },
+      data: { status: Status.APPROVED },
     });
     
     // Instantly refresh the admin list and the public explore grid

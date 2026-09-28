@@ -32,7 +32,7 @@ export default async function DashboardOverview() {
     
     await prisma.restaurant.update({
       where: { id },
-      data: { status: Status.ACTIVE },
+      data: { status: Status.APPROVED },
     });
     
     revalidatePath("/dashboard");

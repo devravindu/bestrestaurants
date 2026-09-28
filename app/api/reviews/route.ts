@@ -1,64 +1,72 @@
-import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
-export async function POST(req: Request) {
-  try {
-    const session = await getServerSession();
-    console.log("Backend Session Check:", session?.user?.email);
-    
-    if (!session?.user?.email) {
-      return NextResponse.json({ message: "You must be logged in to leave a review." }, { status: 401 });
-    }
+const prisma = new PrismaClient();
 
-    const dbUser = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
-
-    if (!dbUser) {
-      return NextResponse.json({ message: "User not found" }, { status: 404 });
-    }
-
-    const body = await req.json();
-    const { rating, comment, restaurantId } = body;
-
-    if (!rating || !restaurantId) {
-      return NextResponse.json({ message: "Rating and Restaurant ID are required." }, { status: 400 });
-    }
-
-    // 1. Create the new review in the database
-    const newReview = await prisma.review.create({
-      data: {
-        rating: Number(rating),
-        comment: comment || "",
-        restaurantId: restaurantId,
-        userId: dbUser.id,
+// Extract and export the configuration object
+export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma) as any,
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" }
       },
-    });
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Missing email or password");
+        }
 
-    // 2. Calculate the new average rating and total count
-    const aggregations = await prisma.review.aggregate({
-      where: { restaurantId: restaurantId },
-      _avg: { rating: true },
-      _count: { id: true },
-    });
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email }
+        });
 
-    const newAvgRating = aggregations._avg.rating || 0;
-    const newReviewCount = aggregations._count.id || 0;
+        if (!user || !user.passwordHash) {
+          throw new Error("Invalid credentials");
+        }
 
-    // 3. Update the Restaurant model with the fresh analytics
-    await prisma.restaurant.update({
-      where: { id: restaurantId },
-      data: {
-        avgRating: Number(newAvgRating.toFixed(1)),
-        reviewCount: newReviewCount,
-      },
-    });
+        const isPasswordValid = await bcrypt.compare(credentials.password, user.passwordHash);
 
-    return NextResponse.json({ review: newReview, message: "Review submitted successfully." }, { status: 200 });
-  } catch (error) {
-    console.error("Review submission error:", error);
-    return NextResponse.json({ message: "Internal server error." }, { status: 500 });
-  }
-}
+        if (!isPasswordValid) {
+          throw new Error("Invalid credentials");
+        }
+
+        return user;
+      }
+    })
+  ],
+  pages: {
+    signIn: '/login',
+  },
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.role = token.role as string;
+      }
+      return session;
+    },
+  },
+};
+
+// Pass the extracted options into NextAuth
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };

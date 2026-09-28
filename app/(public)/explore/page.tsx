@@ -4,9 +4,9 @@ import prisma from "@/lib/prisma";
 import { Status } from "@prisma/client";
 
 export default async function ExplorePage() {
-  // Fetch all active restaurants, ordered by highest rating first
+  // Fetch all approved restaurants, ordered by highest rating first
   const restaurants = await prisma.restaurant.findMany({
-    where: { status: Status.ACTIVE }, 
+    where: { status: Status.APPROVED }, 
     orderBy: { avgRating: "desc" },
   });
 
@@ -65,7 +65,7 @@ export default async function ExplorePage() {
                   
                   <div className="mt-auto pt-[16px] border-t border-line flex justify-between items-center text-[0.85rem] text-ink/70">
                     <span>{restaurant.reviewCount} reviews</span>
-                    {restaurant.avgPrice && <span className="font-medium">{restaurant.avgPrice}</span>}
+                    
                   </div>
                 </div>
               </Link>
