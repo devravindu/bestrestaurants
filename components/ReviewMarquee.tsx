@@ -9,7 +9,7 @@ const reviewsData = [
 
 export default function ReviewMarquee() {
   return (
-    <section className="bg-teal-deep text-cream overflow-hidden py-[88px] max-sm:py-[56px]">
+    <section className="bg-dark-soft text-cream overflow-hidden py-[88px] max-sm:py-[56px]">
       <style>{`
         @keyframes scrollReviews {
           from { transform: translateX(0); }
@@ -22,7 +22,7 @@ export default function ReviewMarquee() {
 
       <div className="max-w-[1240px] mx-auto px-[32px] max-lg:px-[20px]">
         <div className="mb-[44px]">
-          <h2 className="text-[clamp(1.6rem,2.6vw,2.1rem)] tracking-[-0.01em] font-display font-semibold">
+          <h2 className="font-display text-[clamp(2rem,3.5vw,3.2rem)] leading-[0.98] tracking-[-0.035em] max-w-[14ch] font-bold">
             Fresh off the table: recent reviews
           </h2>
           <p className="text-cream/65 text-[1rem] mt-[10px] max-w-[48ch]">

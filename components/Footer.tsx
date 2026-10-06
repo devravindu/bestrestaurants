@@ -5,12 +5,12 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-teal-deep text-cream">
+    <footer className="bg-dark text-cream">
       {/* Newsletter */}
       <div className="max-w-[1240px] mx-auto px-[32px] max-lg:px-[20px]">
         <div className="border-b border-cream/15 py-[56px] flex items-center justify-between gap-[32px] flex-wrap max-sm:flex-col max-sm:items-start">
           <div>
-            <h3 className="text-[1.5rem] font-display font-semibold max-w-[13ch]">Join the Foodie Club</h3>
+            <h3 className="font-display text-[clamp(2rem,3.5vw,3.2rem)] leading-[0.98] tracking-[-0.035em] max-w-[14ch] font-bold">Join the Foodie Club</h3>
             <p className="text-cream/60 mt-[8px] max-w-[38ch]">Get the best weekend spots delivered to your inbox.</p>
           </div>
           <form className="flex shrink-0 w-full max-w-[360px] max-sm:max-w-full" onSubmit={(e) => e.preventDefault()}>

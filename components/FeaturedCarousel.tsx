@@ -18,7 +18,7 @@ export default async function FeaturedCarousel() {
         
         <div className="flex justify-between items-end mb-[40px]">
           <div>
-            <h2 className="text-[2.5rem] font-display font-bold text-ink mb-[8px]">
+            <h2 className="font-display text-[clamp(2rem,3.5vw,3.2rem)] leading-[0.98] tracking-[-0.035em] max-w-[14ch] font-bold">
               Featured culinary<br/>destinations
             </h2>
             <p className="text-ink/60 text-[1.1rem]">

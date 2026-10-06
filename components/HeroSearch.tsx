@@ -16,10 +16,7 @@ export default function HeroSearch() {
 
   return (
     <section 
-      className="relative text-cream overflow-hidden py-[88px] pb-[120px] max-sm:py-[56px]"
-      style={{
-        background: `radial-gradient(ellipse 60% 90% at 88% 20%, rgba(219,158,44,0.16), transparent 60%), linear-gradient(180deg, var(--color-teal) 0%, var(--color-teal-deep) 100%)`
-      }}
+      className="relative text-cream overflow-hidden py-[88px] pb-[120px] max-sm:py-[56px] hero-gradient"
     >
       {/* Background Weave Pattern */}
       <svg className="absolute inset-0 opacity-50 pointer-events-none w-full h-full" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
@@ -41,8 +38,8 @@ export default function HeroSearch() {
             Sri Lanka's dining guide, since the first kade
           </div>
           
-          <h1 className="text-[clamp(2.3rem,4.4vw,3.6rem)] leading-[1.06] tracking-[-0.01em] max-w-[12.5ch] font-display font-semibold">
-            Discover Sri Lanka's ultimate dining experiences.
+          <h1 className="font-display text-[clamp(3.2rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.045em] max-w-[10ch] font-bold">
+            Discover Sri Lanka's Ultimate Dining Experiences.
           </h1>
           
           <p className="text-[1.08rem] text-cream/82 max-w-[46ch] mt-[22px]">

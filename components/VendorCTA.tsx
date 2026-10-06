@@ -6,7 +6,7 @@ export default function VendorCTA() {
     <section className="bg-chili text-cream py-[70px]">
       <div className="max-w-[1240px] mx-auto px-[32px] max-lg:px-[20px] flex items-center justify-between gap-[32px] flex-wrap max-lg:flex-col max-lg:items-start">
         <div>
-          <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-display font-semibold max-w-[14ch]">
+          <h2 className="font-display text-[clamp(2rem,3.5vw,3.2rem)] leading-[0.98] tracking-[-0.035em] max-w-[14ch] font-bold">
             Are you a restaurant owner?
           </h2>
           <p className="mt-[12px] text-[1.02rem] text-cream/90 max-w-[44ch]">

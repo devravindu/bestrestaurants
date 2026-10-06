@@ -43,7 +43,7 @@ export default function TrendingGrid() {
         {/* Section Header */}
         <div className="flex justify-between items-end mb-[44px] gap-[24px] flex-wrap">
           <div>
-            <h2 className="text-[clamp(1.6rem,2.6vw,2.1rem)] tracking-[-0.01em] max-w-[16ch] font-display font-semibold">
+            <h2 className="font-display text-[clamp(2rem,3.5vw,3.2rem)] leading-[0.98] tracking-[-0.035em] max-w-[14ch] font-bold">
               Trending in Mount Lavinia & Colombo
             </h2>
             <p className="text-ink/60 text-[1rem] mt-[10px] max-w-[48ch]">
