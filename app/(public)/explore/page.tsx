@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import { Status } from "@prisma/client";
 
 export default async function ExplorePage() {
-  // Fetch all active restaurants, ordered by highest rating first
+  // Fetch all approved restaurants, ordered by highest rating first
   const restaurants = await prisma.restaurant.findMany({
     where: { status: Status.APPROVED }, 
     orderBy: { avgRating: "desc" },

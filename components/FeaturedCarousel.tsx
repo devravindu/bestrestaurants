@@ -5,7 +5,7 @@ import prisma from '@/lib/prisma';
 import { Status } from '@prisma/client';
 
 export default async function FeaturedCarousel() {
-  // Fetch the top 4 highest-rated active restaurants directly inside the component
+  // Fetch the top 4 highest-rated approved restaurants directly inside the component
   const featuredRestaurants = await prisma.restaurant.findMany({
     where: { status: Status.APPROVED },
     orderBy: { avgRating: "desc" },
