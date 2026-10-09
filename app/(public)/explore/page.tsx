@@ -11,7 +11,7 @@ export default async function ExplorePage() {
   });
 
  return (
-    <main className="min-h-screen bg-paper py-[60px]">
+    <main className="min-h-screen bg-light py-[60px]">
       <div className="max-w-[1200px] mx-auto px-[20px] md:px-[40px]">
         <header className="mb-[40px]">
           <h1 className="text-[3rem] font-display font-bold text-ink mb-[12px]">
@@ -56,7 +56,7 @@ export default async function ExplorePage() {
                 </div>
                 
                 <div className="p-[20px] flex flex-col flex-grow">
-                  <h2 className="text-[1.25rem] font-bold text-ink mb-[4px] group-hover:text-teal transition-colors">
+                  <h2 className="text-[1.25rem] font-bold text-ink mb-[4px] group-hover:text-dark transition-colors">
                     {restaurant.name}
                   </h2>
                   <p className="text-ink/60 text-[0.85rem] mb-[12px] truncate">

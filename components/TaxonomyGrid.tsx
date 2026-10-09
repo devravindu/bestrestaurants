@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function TaxonomyGrid() {
   return (
-    <section className="bg-paper-warm py-[88px] max-sm:py-[56px]">
+    <section className="bg-light-warm py-[88px] max-sm:py-[56px]">
       <div className="max-w-[1240px] mx-auto px-[32px] max-lg:px-[20px]">
         
         {/* Section Header */}

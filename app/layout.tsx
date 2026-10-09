@@ -32,10 +32,10 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       {/* 
         Here is where the magic happens! 
-        We inject the font variables and apply your custom bg-paper and text-ink colors globally.
+        We inject the font variables and apply your custom bg-light and text-ink colors globally.
       */}
       <body suppressHydrationWarning
-        className={`${fraunces.variable} ${publicSans.variable} font-body bg-paper text-ink antialiased` }
+        className={`${fraunces.variable} ${publicSans.variable} font-body bg-light text-ink antialiased` }
       >
         <Providers>
           {children}

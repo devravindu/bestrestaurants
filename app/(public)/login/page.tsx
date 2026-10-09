@@ -62,7 +62,7 @@ const handleLogin = async (e: React.FormEvent) => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center p-[20px]">
-      <div className="bg-cream rounded-m shadow-[0_24px_48px_-20px_rgba(0,0,0,0.15)] border border-line w-full max-w-[440px] p-[40px]">
+      <div className="bg-white rounded-m shadow-[0_24px_48px_-20px_rgba(0,0,0,0.15)] border border-line w-full max-w-[440px] p-[40px]">
 
         <div className="text-center mb-[28px]">
           <h1 className="font-display text-[2rem] font-semibold mb-[8px]">
@@ -77,7 +77,7 @@ const handleLogin = async (e: React.FormEvent) => {
         <button
           onClick={handleGoogleLogin}
           type="button"
-          className="w-full inline-flex items-center justify-center gap-[10px] font-bold text-[1rem] py-[12px] px-[20px] rounded-s bg-white border border-line text-ink hover:bg-paper transition-colors mb-[24px]"
+          className="w-full inline-flex items-center justify-center gap-[10px] font-bold text-[1rem] py-[12px] px-[20px] rounded-s bg-white border border-line text-ink hover:bg-light transition-colors mb-[24px]"
         >
           <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24">
             <path
@@ -118,7 +118,7 @@ const handleLogin = async (e: React.FormEvent) => {
           <div className="flex flex-col gap-[6px]">
             <label
               htmlFor="email"
-              className="text-[0.85rem] font-bold text-teal"
+              className="text-[0.85rem] font-bold text-dark"
             >
               Email Address
             </label>
@@ -129,7 +129,7 @@ const handleLogin = async (e: React.FormEvent) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-teal transition-colors disabled:opacity-50"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-dark transition-colors disabled:opacity-50"
               disabled={status === "loading"}
             />
           </div>
@@ -138,13 +138,13 @@ const handleLogin = async (e: React.FormEvent) => {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="text-[0.85rem] font-bold text-teal"
+                className="text-[0.85rem] font-bold text-dark"
               >
                 Password
               </label>
               <Link
                 href="#"
-                className="text-[0.8rem] text-teal hover:underline font-medium"
+                className="text-[0.8rem] text-dark hover:underline font-medium"
               >
                 Forgot password?
               </Link>
@@ -157,7 +157,7 @@ const handleLogin = async (e: React.FormEvent) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-teal transition-colors disabled:opacity-50"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-dark transition-colors disabled:opacity-50"
               disabled={status === "loading"}
             />
           </div>
@@ -165,7 +165,7 @@ const handleLogin = async (e: React.FormEvent) => {
           <button
             type="submit"
             disabled={status === "loading" || !email || !password}
-            className="w-full inline-flex items-center justify-center font-bold text-[1rem] py-[13px] px-[20px] rounded-s bg-teal-deep text-cream hover:bg-black transition-colors disabled:opacity-70 mt-[8px]"
+            className="w-full inline-flex items-center justify-center font-bold text-[1rem] py-[13px] px-[20px] rounded-s bg-dark-deep text-white hover:bg-black transition-colors disabled:opacity-70 mt-[8px]"
           >
             {status === "loading" ? "Signing in..." : "Sign In"}
           </button>
@@ -175,7 +175,7 @@ const handleLogin = async (e: React.FormEvent) => {
           New to BestRestaurant.lk?{" "}
           <Link
             href="/register"
-            className="font-bold text-teal hover:underline"
+            className="font-bold text-dark hover:underline"
           >
             Create an account
           </Link>

@@ -13,7 +13,7 @@ export default async function FeaturedCarousel() {
   });
 
   return (
-    <section className="py-[80px] bg-paper">
+    <section className="py-[80px] bg-light">
       <div className="max-w-[1200px] mx-auto px-[20px] md:px-[40px]">
         
         <div className="flex justify-between items-end mb-[40px]">

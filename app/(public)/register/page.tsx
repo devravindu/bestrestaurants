@@ -65,7 +65,7 @@ router.push('/login');
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center p-[20px]">
-      <div className="bg-cream rounded-m shadow-[0_24px_48px_-20px_rgba(0,0,0,0.15)] border border-line w-full max-w-[440px] p-[40px]">
+      <div className="bg-white rounded-m shadow-[0_24px_48px_-20px_rgba(0,0,0,0.15)] border border-line w-full max-w-[440px] p-[40px]">
         
         <div className="text-center mb-[28px]">
           <h1 className="font-display text-[2rem] font-semibold mb-[8px]">Create an account</h1>
@@ -78,7 +78,7 @@ router.push('/login');
         <button 
           onClick={handleGoogleSignup}
           type="button"
-          className="w-full inline-flex items-center justify-center gap-[10px] font-bold text-[1rem] py-[12px] px-[20px] rounded-s bg-white border border-line text-ink hover:bg-paper transition-colors mb-[24px]"
+          className="w-full inline-flex items-center justify-center gap-[10px] font-bold text-[1rem] py-[12px] px-[20px] rounded-s bg-white border border-line text-ink hover:bg-light transition-colors mb-[24px]"
         >
           <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24">
             <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -103,7 +103,7 @@ router.push('/login');
           )}
 
           <div className="flex flex-col gap-[6px]">
-            <label htmlFor="name" className="text-[0.85rem] font-bold text-teal">Full Name</label>
+            <label htmlFor="name" className="text-[0.85rem] font-bold text-dark">Full Name</label>
             <input 
               id="name"
               type="text" 
@@ -111,13 +111,13 @@ router.push('/login');
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Nimal Perera"
-              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-teal transition-colors disabled:opacity-50"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-dark transition-colors disabled:opacity-50"
               disabled={status === 'loading'}
             />
           </div>
 
           <div className="flex flex-col gap-[6px]">
-            <label htmlFor="email" className="text-[0.85rem] font-bold text-teal">Email Address</label>
+            <label htmlFor="email" className="text-[0.85rem] font-bold text-dark">Email Address</label>
             <input 
               id="email"
               type="email" 
@@ -125,13 +125,13 @@ router.push('/login');
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-teal transition-colors disabled:opacity-50"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-dark transition-colors disabled:opacity-50"
               disabled={status === 'loading'}
             />
           </div>
 
           <div className="flex flex-col gap-[6px]">
-            <label htmlFor="password" className="text-[0.85rem] font-bold text-teal">Password</label>
+            <label htmlFor="password" className="text-[0.85rem] font-bold text-dark">Password</label>
             <input 
               id="password"
               type="password" 
@@ -140,7 +140,7 @@ router.push('/login');
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Min. 6 characters"
-              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-teal transition-colors disabled:opacity-50"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink font-body text-[0.95rem] rounded-s outline-none placeholder:text-ink/40 focus:border-dark transition-colors disabled:opacity-50"
               disabled={status === 'loading'}
             />
           </div>
@@ -148,7 +148,7 @@ router.push('/login');
           <button 
             type="submit" 
             disabled={status === 'loading' || !email || !password || !name}
-            className="w-full inline-flex items-center justify-center font-bold text-[1rem] py-[13px] px-[20px] rounded-s bg-teal-deep text-cream hover:bg-black transition-colors disabled:opacity-70 mt-[8px]"
+            className="w-full inline-flex items-center justify-center font-bold text-[1rem] py-[13px] px-[20px] rounded-s bg-dark-deep text-white hover:bg-black transition-colors disabled:opacity-70 mt-[8px]"
           >
             {status === 'loading' ? 'Creating account...' : 'Create Account'}
           </button>
@@ -156,7 +156,7 @@ router.push('/login');
 
         <p className="text-center text-[0.9rem] text-ink/70 mt-[24px]">
           Already have an account?{' '}
-          <Link href="/login" className="font-bold text-teal hover:underline">
+          <Link href="/login" className="font-bold text-dark hover:underline">
             Log in
           </Link>
         </p>

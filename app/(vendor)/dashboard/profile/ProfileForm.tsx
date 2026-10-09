@@ -89,50 +89,50 @@ export default function ProfileForm({ initialData }: { initialData: any }) {
       {/* LEFT COLUMN: Text Inputs */}
       <div className="lg:col-span-2 flex flex-col gap-[32px]">
         {/* Section 1: Basic Info */}
-        <div className="bg-cream border border-line rounded-m p-[32px]">
+        <div className="bg-white border border-line rounded-m p-[32px]">
           <h2 className="font-bold text-[1.2rem] text-ink mb-[24px]">Basic Information</h2>
           <div className="flex flex-col gap-[20px]">
             <div className="flex flex-col gap-[6px]">
-              <label className="text-[0.85rem] font-bold text-teal">Restaurant Name</label>
-              <input name="name" value={formData.name} onChange={handleChange} required className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal" />
+              <label className="text-[0.85rem] font-bold text-dark">Restaurant Name</label>
+              <input name="name" value={formData.name} onChange={handleChange} required className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark" />
             </div>
             <div className="flex flex-col gap-[6px]">
-              <label className="text-[0.85rem] font-bold text-teal">Categories / Tags (Comma separated)</label>
-              <input name="category" value={formData.category} onChange={handleChange} placeholder="e.g. Seafood, Sri Lankan, Fine Dining" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal" />
+              <label className="text-[0.85rem] font-bold text-dark">Categories / Tags (Comma separated)</label>
+              <input name="category" value={formData.category} onChange={handleChange} placeholder="e.g. Seafood, Sri Lankan, Fine Dining" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark" />
             </div>
             <div className="flex flex-col gap-[6px]">
-              <label className="text-[0.85rem] font-bold text-teal">Why it's top-rated (Description)</label>
-              <textarea name="description" rows={5} value={formData.description} onChange={handleChange} className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal resize-none" />
+              <label className="text-[0.85rem] font-bold text-dark">Why it's top-rated (Description)</label>
+              <textarea name="description" rows={5} value={formData.description} onChange={handleChange} className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark resize-none" />
             </div>
           </div>
         </div>
 
         {/* Section 2: Location & Contact */}
-        <div className="bg-cream border border-line rounded-m p-[32px]">
+        <div className="bg-white border border-line rounded-m p-[32px]">
           <h2 className="font-bold text-[1.2rem] text-ink mb-[24px]">Location & Contact</h2>
           <div className="grid grid-cols-2 gap-[20px] max-md:grid-cols-1">
             <div className="flex flex-col gap-[6px] col-span-2 max-md:col-span-1">
-              <label className="text-[0.85rem] font-bold text-teal">Full Address</label>
-              <input name="location" value={formData.location} onChange={handleChange} placeholder="e.g. 12 Lighthouse Road, Unawatuna" required className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal" />
+              <label className="text-[0.85rem] font-bold text-dark">Full Address</label>
+              <input name="location" value={formData.location} onChange={handleChange} placeholder="e.g. 12 Lighthouse Road, Unawatuna" required className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark" />
             </div>
             <div className="flex flex-col gap-[6px]">
-              <label className="text-[0.85rem] font-bold text-teal">Phone Number</label>
-              <input name="phone" value={formData.phone} onChange={handleChange} placeholder="+94 77 123 4567" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal" />
+              <label className="text-[0.85rem] font-bold text-dark">Phone Number</label>
+              <input name="phone" value={formData.phone} onChange={handleChange} placeholder="+94 77 123 4567" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark" />
             </div>
             <div className="flex flex-col gap-[6px]">
-              <label className="text-[0.85rem] font-bold text-teal">Website URL</label>
-              <input name="website" value={formData.website} onChange={handleChange} placeholder="www.ranguscoast.lk" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal" />
+              <label className="text-[0.85rem] font-bold text-dark">Website URL</label>
+              <input name="website" value={formData.website} onChange={handleChange} placeholder="www.ranguscoast.lk" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark" />
             </div>
           </div>
         </div>
 
         {/* Section 3: Dining Details */}
-        <div className="bg-cream border border-line rounded-m p-[32px]">
+        <div className="bg-white border border-line rounded-m p-[32px]">
           <h2 className="font-bold text-[1.2rem] text-ink mb-[24px]">Dining Details</h2>
           <div className="flex flex-col gap-[20px]">
             <div className="flex flex-col gap-[6px]">
-              <label className="text-[0.85rem] font-bold text-teal">Opening Hours (Line separated)</label>
-              <textarea name="workingHours" rows={4} value={formData.workingHours} onChange={handleChange} placeholder="Mon-Thu: 11:00 AM - 10:00 PM&#10;Fri-Sun: 10:00 AM - 11:30 PM" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal resize-none" />
+              <label className="text-[0.85rem] font-bold text-dark">Opening Hours (Line separated)</label>
+              <textarea name="workingHours" rows={4} value={formData.workingHours} onChange={handleChange} placeholder="Mon-Thu: 11:00 AM - 10:00 PM&#10;Fri-Sun: 10:00 AM - 11:30 PM" className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark resize-none" />
             </div>
           </div>
         </div>
@@ -140,18 +140,18 @@ export default function ProfileForm({ initialData }: { initialData: any }) {
 
       {/* RIGHT COLUMN: Image Upload & Submit (Sticky) */}
       <div className="lg:col-span-1 sticky top-[100px] flex flex-col gap-[24px]">
-        <div className="bg-cream border border-line rounded-m p-[32px]">
+        <div className="bg-white border border-line rounded-m p-[32px]">
           <h2 className="font-bold text-[1.2rem] text-ink mb-[16px]">Cover Image</h2>
           <p className="text-[0.85rem] text-ink/60 mb-[24px]">
             Upload a high-quality image to serve as the hero background for your listing. Max 5MB.
           </p>
 
-          <div className="relative w-full aspect-video bg-paper border-2 border-dashed border-line rounded-s flex flex-col items-center justify-center overflow-hidden mb-[16px] group hover:border-teal transition-colors">
+          <div className="relative w-full aspect-video bg-light border-2 border-dashed border-line rounded-s flex flex-col items-center justify-center overflow-hidden mb-[16px] group hover:border-dark transition-colors">
             {formData.heroImageUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={formData.heroImageUrl} alt="Cover Preview" className="absolute inset-0 w-full h-full object-cover" />
             ) : (
-              <span className="text-ink/40 text-[0.9rem] font-medium group-hover:text-teal transition-colors">
+              <span className="text-ink/40 text-[0.9rem] font-medium group-hover:text-dark transition-colors">
                 {isUploading ? "Uploading..." : "Click to select image"}
               </span>
             )}
@@ -165,8 +165,8 @@ export default function ProfileForm({ initialData }: { initialData: any }) {
           </div>
 
           <div className="flex justify-between items-center mt-[32px] pt-[24px] border-t border-line">
-            {status === 'success' && <span className="text-teal font-bold text-[0.95rem]">Saved ✓</span>}
-            <button type="submit" disabled={status === 'loading' || isUploading} className="w-full font-bold text-[1rem] py-[12px] px-[24px] rounded-s bg-teal-deep text-cream hover:bg-black transition-colors disabled:opacity-70">
+            {status === 'success' && <span className="text-dark font-bold text-[0.95rem]">Saved ✓</span>}
+            <button type="submit" disabled={status === 'loading' || isUploading} className="w-full font-bold text-[1rem] py-[12px] px-[24px] rounded-s bg-dark-deep text-white hover:bg-black transition-colors disabled:opacity-70">
               {status === 'loading' ? 'Saving...' : 'Save Profile'}
             </button>
           </div>

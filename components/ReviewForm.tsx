@@ -34,7 +34,7 @@ export default function ReviewForm({ restaurantId }: { restaurantId: string }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-cream border border-line rounded-xl p-[24px] mt-[32px]">
+    <form onSubmit={handleSubmit} className="bg-white border border-line rounded-xl p-[24px] mt-[32px]">
       <h3 className="font-bold text-[1.2rem] text-ink mb-[16px]">Leave a Review</h3>
       
       <div className="flex gap-[8px] mb-[16px]">
@@ -59,17 +59,17 @@ export default function ReviewForm({ restaurantId }: { restaurantId: string }) {
         placeholder="Share your dining experience..."
         rows={4}
         required
-        className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-white text-ink rounded-s outline-none focus:border-teal resize-none mb-[16px]"
+        className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-white text-ink rounded-s outline-none focus:border-dark resize-none mb-[16px]"
       />
 
       <div className="flex items-center justify-between">
         {status === 'success' ? (
-          <span className="text-teal font-bold">Review published! ✓</span>
+          <span className="text-dark font-bold">Review published! ✓</span>
         ) : <span />}
         <button 
           type="submit" 
           disabled={status === 'loading'}
-          className="bg-teal-deep text-white font-bold py-[10px] px-[24px] rounded-s hover:bg-black transition-colors disabled:opacity-70"
+          className="bg-dark-deep text-white font-bold py-[10px] px-[24px] rounded-s hover:bg-black transition-colors disabled:opacity-70"
         >
           {status === 'loading' ? 'Submitting...' : 'Submit Review'}
         </button>

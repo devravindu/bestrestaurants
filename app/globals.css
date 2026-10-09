@@ -7,10 +7,12 @@
 
   --color-dark: #17110E;
   --color-dark-soft: #241B16;
+  --color-dark-deep: #000000;
 
-  --color-paper: #F7F1E5;
-  --color-paper-warm: #EEE1C8;
-  --color-cream: #FCF8F0;
+
+  --color-light: #F7F8FA;
+  --color-light-warm: #EEE1C8;
+  --color-white: #FFFFFF;
 
   --color-turmeric: #D89A27;
 

@@ -65,7 +65,7 @@ export default async function DashboardOverview() {
 
       {/* 1. STANDARD USER VIEW */}
       {userRole === "USER" && (
-        <div className="bg-cream border border-line rounded-m p-[32px] text-center max-w-[600px] mt-[40px]">
+        <div className="bg-white border border-line rounded-m p-[32px] text-center max-w-[600px] mt-[40px]">
           <div className="text-[3rem] mb-[16px]">🏪</div>
 
           <h2 className="font-display text-[1.8rem] font-semibold mb-[12px]">
@@ -79,7 +79,7 @@ export default async function DashboardOverview() {
 
           <Link
             href="/dashboard/onboarding"
-            className="inline-flex items-center justify-center font-bold text-[1rem] py-[12px] px-[24px] rounded-s bg-chili text-cream hover:bg-chili-deep transition-colors"
+            className="inline-flex items-center justify-center font-bold text-[1rem] py-[12px] px-[24px] rounded-s bg-chili text-white hover:bg-chili-deep transition-colors"
           >
             Register my Restaurant
           </Link>
@@ -89,21 +89,21 @@ export default async function DashboardOverview() {
       {/* 2. VENDOR VIEW */}
       {userRole === "VENDOR" && (
         <div className="grid grid-cols-3 gap-[24px]">
-          <div className="bg-cream border border-line p-[24px] rounded-m shadow-soft">
-            <h3 className="font-bold text-teal mb-[8px]">Total Views</h3>
+          <div className="bg-white border border-line p-[24px] rounded-m shadow-soft">
+            <h3 className="font-bold text-dark mb-[8px]">Total Views</h3>
             <p className="text-[2.2rem] font-display font-bold">0</p>
           </div>
 
-          <div className="bg-cream border border-line p-[24px] rounded-m shadow-soft">
-            <h3 className="font-bold text-teal mb-[8px]">Average Rating</h3>
+          <div className="bg-white border border-line p-[24px] rounded-m shadow-soft">
+            <h3 className="font-bold text-dark mb-[8px]">Average Rating</h3>
             <p className="text-[2.2rem] font-display font-bold">
               {restaurant?.avgRating?.toFixed(1) || "0.0"}{" "}
               <span className="text-[1.2rem]">⭐️</span>
             </p>
           </div>
 
-          <div className="bg-cream border border-line p-[24px] rounded-m shadow-soft">
-            <h3 className="font-bold text-teal mb-[8px]">Total Reviews</h3>
+          <div className="bg-white border border-line p-[24px] rounded-m shadow-soft">
+            <h3 className="font-bold text-dark mb-[8px]">Total Reviews</h3>
             <p className="text-[2.2rem] font-display font-bold">
               {restaurant?.reviewCount || 0}
             </p>
@@ -153,7 +153,7 @@ export default async function DashboardOverview() {
 
                     <button
                       type="submit"
-                      className="bg-teal text-white font-bold py-[10px] px-[24px] rounded-s hover:bg-teal/90 transition-colors"
+                      className="bg-dark text-white font-bold py-[10px] px-[24px] rounded-s hover:bg-dark/90 transition-colors"
                     >
                       Approve Listing
                     </button>

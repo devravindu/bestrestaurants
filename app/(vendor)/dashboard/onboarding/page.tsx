@@ -41,8 +41,8 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-paper py-[60px] px-[20px]">
-      <div className="max-w-[600px] mx-auto bg-cream rounded-m shadow-soft border border-line p-[40px]">
+    <div className="min-h-screen bg-light py-[60px] px-[20px]">
+      <div className="max-w-[600px] mx-auto bg-white rounded-m shadow-soft border border-line p-[40px]">
         <h1 className="font-display text-[2rem] font-bold text-ink mb-[8px]">
           Register your Restaurant
         </h1>
@@ -59,7 +59,7 @@ export default function OnboardingPage() {
           )}
 
           <div className="flex flex-col gap-[6px]">
-            <label className="text-[0.85rem] font-bold text-teal">
+            <label className="text-[0.85rem] font-bold text-dark">
               Restaurant Name *
             </label>
             <input
@@ -68,12 +68,12 @@ export default function OnboardingPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Rangu's Coastal Kitchen"
-              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal transition-colors"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark transition-colors"
             />
           </div>
 
           <div className="flex flex-col gap-[6px]">
-            <label className="text-[0.85rem] font-bold text-teal">
+            <label className="text-[0.85rem] font-bold text-dark">
               Location / Address *
             </label>
             <input
@@ -82,12 +82,12 @@ export default function OnboardingPage() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="e.g. 12 Lighthouse Road, Unawatuna"
-              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal transition-colors"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark transition-colors"
             />
           </div>
 
           <div className="flex flex-col gap-[6px]">
-            <label className="text-[0.85rem] font-bold text-teal">
+            <label className="text-[0.85rem] font-bold text-dark">
               Contact Number
             </label>
             <input
@@ -95,12 +95,12 @@ export default function OnboardingPage() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="+94 77 123 4567"
-              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal transition-colors"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark transition-colors"
             />
           </div>
 
           <div className="flex flex-col gap-[6px]">
-            <label className="text-[0.85rem] font-bold text-teal">
+            <label className="text-[0.85rem] font-bold text-dark">
               Short Description
             </label>
             <textarea
@@ -108,14 +108,14 @@ export default function OnboardingPage() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="What makes your restaurant top-rated?"
-              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-teal transition-colors resize-none"
+              className="w-full py-[11px] px-[16px] border-[1.5px] border-line bg-transparent text-ink rounded-s outline-none focus:border-dark transition-colors resize-none"
             />
           </div>
 
           <button
             type="submit"
             disabled={status === "loading"}
-            className="w-full font-bold text-[1rem] py-[14px] rounded-s bg-chili text-cream hover:bg-chili-deep transition-colors disabled:opacity-70 mt-[12px]"
+            className="w-full font-bold text-[1rem] py-[14px] rounded-s bg-chili text-white hover:bg-chili-deep transition-colors disabled:opacity-70 mt-[12px]"
           >
             {status === "loading" ? "Setting up..." : "Complete Registration"}
           </button>

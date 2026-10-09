@@ -9,7 +9,7 @@ const reviewsData = [
 
 export default function ReviewMarquee() {
   return (
-    <section className="bg-dark-soft text-cream overflow-hidden py-[88px] max-sm:py-[56px]">
+    <section className="bg-dark-soft text-white overflow-hidden py-[88px] max-sm:py-[56px]">
       <style>{`
         @keyframes scrollReviews {
           from { transform: translateX(0); }
@@ -25,7 +25,7 @@ export default function ReviewMarquee() {
           <h2 className="font-display text-[clamp(2rem,3.5vw,3.2rem)] leading-[0.98] tracking-[-0.035em] max-w-[14ch] font-bold">
             Fresh off the table: recent reviews
           </h2>
-          <p className="text-cream/65 text-[1rem] mt-[10px] max-w-[48ch]">
+          <p className="text-white/65 text-[1rem] mt-[10px] max-w-[48ch]">
             What diners are saying, right now.
           </p>
         </div>
@@ -35,14 +35,14 @@ export default function ReviewMarquee() {
         <div className="flex gap-[20px] w-max animate-scrollReviews hover:[animation-play-state:paused]">
           {/* We render the array twice for the seamless looping effect */}
           {[...reviewsData, ...reviewsData].map((review, index) => (
-            <div key={index} className="w-[340px] flex-none bg-cream/5 border border-line-light rounded-m p-[24px]">
+            <div key={index} className="w-[340px] flex-none bg-white/5 border border-line-light rounded-m p-[24px]">
               <div className="flex items-center gap-[12px] mb-[14px]">
                 <div className="w-[38px] h-[38px] rounded-full bg-turmeric text-ink flex items-center justify-center font-bold text-[0.95rem] shrink-0">
                   {review.avatar}
                 </div>
                 <div className="font-bold text-[0.95rem]">{review.name}</div>
               </div>
-              <p className="text-[0.94rem] text-cream/85 leading-[1.6] mb-[14px]">
+              <p className="text-[0.94rem] text-white/85 leading-[1.6] mb-[14px]">
                 {review.text}
               </p>
               <span className="text-[0.84rem] text-turmeric font-semibold">

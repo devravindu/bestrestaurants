@@ -16,7 +16,7 @@ export default function HeroSearch() {
 
   return (
     <section 
-      className="relative text-cream overflow-hidden py-[88px] pb-[120px] max-sm:py-[56px] hero-gradient"
+      className="relative text-white overflow-hidden py-[88px] pb-[120px] max-sm:py-[56px] hero-gradient"
     >
       {/* Background Weave Pattern */}
       <svg className="absolute inset-0 opacity-50 pointer-events-none w-full h-full" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
@@ -42,17 +42,17 @@ export default function HeroSearch() {
             Discover Sri Lanka's Ultimate Dining Experiences.
           </h1>
           
-          <p className="text-[1.08rem] text-cream/82 max-w-[46ch] mt-[22px]">
+          <p className="text-[1.08rem] text-white/82 max-w-[46ch] mt-[22px]">
             From street food legends to fine dining. Read reviews, explore menus, and find your next meal.
           </p>
 
           {/* Search Panel */}
           <form 
             onSubmit={handleSearch}
-            className="mt-[40px] bg-cream rounded-m p-[10px] grid grid-cols-[1fr_1fr_auto] gap-[2px] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.5)] max-md:grid-cols-1"
+            className="mt-[40px] bg-white rounded-m p-[10px] grid grid-cols-[1fr_1fr_auto] gap-[2px] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.5)] max-md:grid-cols-1"
           >
             <div className="flex flex-col gap-[3px] py-[10px] px-[18px] border-r border-ink/10 max-md:border-r-0 max-md:border-b">
-              <label htmlFor="what" className="text-[0.72rem] font-bold text-teal lowercase first-letter:uppercase">what</label>
+              <label htmlFor="what" className="text-[0.72rem] font-bold text-dark lowercase first-letter:uppercase">what</label>
               <input 
                 id="what"
                 type="text" 
@@ -64,7 +64,7 @@ export default function HeroSearch() {
             </div>
             
             <div className="flex flex-col gap-[3px] py-[10px] px-[18px]">
-              <label htmlFor="where" className="text-[0.72rem] font-bold text-teal lowercase first-letter:uppercase">where</label>
+              <label htmlFor="where" className="text-[0.72rem] font-bold text-dark lowercase first-letter:uppercase">where</label>
               <input 
                 id="where"
                 type="text" 
@@ -77,17 +77,17 @@ export default function HeroSearch() {
             
             <button 
               type="submit"
-              className="m-[6px] px-[32px] max-md:py-[12px] inline-flex items-center justify-center font-bold text-[0.95rem] rounded-s bg-chili text-cream hover:bg-chili-deep transition-colors"
+              className="m-[6px] px-[32px] max-md:py-[12px] inline-flex items-center justify-center font-bold text-[0.95rem] rounded-s bg-chili text-white hover:bg-chili-deep transition-colors"
             >
               Search
             </button>
           </form>
 
           {/* Meta Stats */}
-          <div className="flex gap-[28px] mt-[28px] text-[0.86rem] text-cream/68 max-sm:flex-col max-sm:gap-[12px]">
-            <span><strong className="text-cream font-bold">2,400+</strong> restaurants listed</span>
-            <span><strong className="text-cream font-bold">38,000+</strong> diner reviews</span>
-            <span><strong className="text-cream font-bold">26</strong> districts covered</span>
+          <div className="flex gap-[28px] mt-[28px] text-[0.86rem] text-white/68 max-sm:flex-col max-sm:gap-[12px]">
+            <span><strong className="text-white font-bold">2,400+</strong> restaurants listed</span>
+            <span><strong className="text-white font-bold">38,000+</strong> diner reviews</span>
+            <span><strong className="text-white font-bold">26</strong> districts covered</span>
           </div>
         </div>
 
@@ -100,7 +100,7 @@ export default function HeroSearch() {
             <path d="M150 250c30-70 150-70 180 0-20 60-160 60-180 0z" fill="var(--color-chili)" opacity="0.85"/>
             <ellipse cx="240" cy="248" rx="86" ry="18" fill="rgba(15,59,53,0.35)"/>
             <circle cx="190" cy="150" r="7" fill="var(--color-turmeric)"/>
-            <circle cx="330" cy="175" r="5" fill="var(--color-cream)" opacity="0.6"/>
+            <circle cx="330" cy="175" r="5" fill="var(--color-white)" opacity="0.6"/>
             <circle cx="120" cy="330" r="6" fill="var(--color-turmeric)" opacity="0.7"/>
             <circle cx="360" cy="330" r="9" fill="var(--color-chili)" opacity="0.6"/>
             <path d="M110 130q40-30 70 4" stroke="rgba(250,244,230,0.3)" strokeWidth="2" fill="none"/>

@@ -14,7 +14,7 @@ export default function SettingsDropdown() {
 
   return (
     <div className="relative group">
-      <button className="flex items-center gap-[12px] w-full px-[16px] py-[12px] text-ink/70 hover:text-teal hover:bg-teal/5 rounded-s transition-colors font-semibold text-[0.95rem]">
+      <button className="flex items-center gap-[12px] w-full px-[16px] py-[12px] text-ink/70 hover:text-dark hover:bg-dark/5 rounded-s transition-colors font-semibold text-[0.95rem]">
         {/* Gear Icon */}
         <svg
           className="w-[18px] h-[18px]"
@@ -41,7 +41,7 @@ export default function SettingsDropdown() {
       <div className="absolute bottom-full left-0 mb-[8px] w-full bg-white border border-line shadow-soft rounded-m opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
         <Link
           href="/dashboard/settings"
-          className="block px-[16px] py-[12px] text-[0.9rem] font-medium text-ink hover:bg-paper transition-colors"
+          className="block px-[16px] py-[12px] text-[0.9rem] font-medium text-ink hover:bg-light transition-colors"
         >
           Account Settings
         </Link>

@@ -37,7 +37,7 @@ const trendingData = [
 
 export default function TrendingGrid() {
   return (
-    <section id="trending" className="bg-paper py-[88px] max-sm:py-[56px]">
+    <section id="trending" className="bg-light py-[88px] max-sm:py-[56px]">
       <div className="max-w-[1240px] mx-auto px-[32px] max-lg:px-[20px]">
         
         {/* Section Header */}

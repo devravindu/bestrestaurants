@@ -45,7 +45,7 @@ export default async function AdminDashboard() {
   }
 
   return (
-    <main className="min-h-screen bg-paper py-[60px] px-[20px] md:px-[40px]">
+    <main className="min-h-screen bg-light py-[60px] px-[20px] md:px-[40px]">
       <div className="max-w-[1000px] mx-auto">
         <header className="mb-[40px]">
           <h1 className="text-[2.5rem] font-display font-bold text-ink mb-[8px]">
@@ -91,7 +91,7 @@ export default async function AdminDashboard() {
 
                   <button
                     type="submit"
-                    className="bg-teal text-white font-bold py-[10px] px-[24px] rounded-s hover:bg-teal/90 transition-colors"
+                    className="bg-dark text-white font-bold py-[10px] px-[24px] rounded-s hover:bg-dark/90 transition-colors"
                   >
                     Approve Listing
                   </button>
