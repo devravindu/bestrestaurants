@@ -119,12 +119,6 @@ export default function Header() {
                 </span>
               </div>
 
-              <button
-                onClick={handleLogout}
-                className="text-[0.85rem] font-semibold text-ink/60 hover:text-chili transition-colors"
-              >
-                Log out
-              </button>
 
               <Link
                 href="/dashboard"
