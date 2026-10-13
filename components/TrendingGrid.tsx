@@ -52,7 +52,7 @@ export default function TrendingGrid() {
           </div>
           <Link 
             href="#" 
-            className="text-[0.9rem] font-bold text-chili border-b-[1.5px] border-chili pb-[2px] shrink-0 hover:text-chili-deep transition-colors"
+            className="text-[0.9rem] font-bold text-dark border-b-[1.5px] border-dark pb-[2px] shrink-0 hover:text-dark-deep transition-colors"
           >
             View full ranking
           </Link>

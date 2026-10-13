@@ -25,7 +25,7 @@ export default async function FeaturedCarousel() {
               Hand-picked places our editors keep going back to.
             </p>
           </div>
-          <Link href="/explore" className="text-chili font-bold text-[0.95rem] hover:underline pb-[8px]">
+          <Link href="/explore" className="text-dark font-bold text-[0.95rem] hover:underline pb-[8px]">
             See all featured
           </Link>
         </div>

@@ -97,7 +97,7 @@ router.push('/login');
 
         <form onSubmit={handleRegister} className="flex flex-col gap-[16px]">
           {errorMessage && (
-            <div className="bg-chili/10 border border-chili text-chili p-[12px] rounded-s text-[0.85rem] font-medium">
+            <div className="bg-dark/10 border border-dark text-dark p-[12px] rounded-s text-[0.85rem] font-medium">
               {errorMessage}
             </div>
           )}

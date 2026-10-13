@@ -18,9 +18,9 @@ export default function Footer() {
               type="email" 
               placeholder="you@example.com" 
               aria-label="Email address"
-              className="w-full py-[13px] px-[16px] border-[1.5px] border-white/25 border-r-0 bg-transparent text-white font-body text-[0.94rem] rounded-l-s outline-none placeholder:text-white/45 focus-visible:outline focus-visible:outline-[2.5px] focus-visible:outline-chili focus-visible:outline-offset-[3px]"
+              className="w-full py-[13px] px-[16px] border-[1.5px] border-white/25 border-r-0 bg-transparent text-white font-body text-[0.94rem] rounded-l-s outline-none placeholder:text-white/45 focus-visible:outline focus-visible:outline-[2.5px] focus-visible:outline-dark focus-visible:outline-offset-[3px]"
             />
-            <button type="submit" className="inline-flex items-center justify-center font-bold text-[0.92rem] py-[11px] px-[20px] rounded-r-s bg-chili text-white hover:bg-chili-deep transition-colors">
+            <button type="submit" className="inline-flex items-center justify-center font-bold text-[0.92rem] py-[11px] px-[20px] rounded-r-s bg-dark text-white hover:bg-dark-deep transition-colors">
               Subscribe
             </button>
           </form>
@@ -31,7 +31,7 @@ export default function Footer() {
       <div className="max-w-[1240px] mx-auto px-[32px] max-lg:px-[20px] py-[52px] pb-[36px] grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-[32px] max-lg:grid-cols-2 max-sm:grid-cols-1">
         <div>
           <Link href="#" className="font-display text-[1.5rem] font-bold tracking-[-0.01em] flex items-baseline gap-[2px]">
-            BestRestaurant<span className="text-chili italic">.</span><span className="text-[0.62em] text-dark font-semibold ml-[2px]">lk</span>
+            BestRestaurant<span className="text-dark italic">.</span><span className="text-[0.62em] text-dark font-semibold ml-[2px]">lk</span>
           </Link>
           <p className="text-white/55 text-[0.9rem] mt-[14px] max-w-[32ch]">
             Sri Lanka's dining guide — reviews, menus, and the island's best tables, all in one place.

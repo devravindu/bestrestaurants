@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function VendorCTA() {
   return (
-    <section className="bg-chili text-white py-[70px]">
+    <section className="bg-dark text-white py-[70px]">
       <div className="max-w-[1240px] mx-auto px-[32px] max-lg:px-[20px] flex items-center justify-between gap-[32px] flex-wrap max-lg:flex-col max-lg:items-start">
         <div>
           <h2 className="font-display text-[clamp(2rem,3.5vw,3.2rem)] leading-[0.98] tracking-[-0.035em] max-w-[14ch] font-bold">

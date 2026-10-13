@@ -48,7 +48,7 @@ export default function SettingsDropdown() {
 
         <button
           onClick={handleLogout}
-          className="block w-full text-left px-[16px] py-[12px] text-[0.9rem] font-medium text-chili hover:bg-chili/5 border-t border-line transition-colors"
+          className="block w-full text-left px-[16px] py-[12px] text-[0.9rem] font-medium text-dark hover:bg-dark/5 border-t border-line transition-colors"
         >
           Log out
         </button>

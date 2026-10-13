@@ -53,7 +53,7 @@ export default function OnboardingPage() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-[20px]">
           {errorMessage && (
-            <div className="bg-chili/10 border border-chili text-chili p-[12px] rounded-s text-[0.85rem] font-medium">
+            <div className="bg-dark/10 border border-dark text-dark p-[12px] rounded-s text-[0.85rem] font-medium">
               {errorMessage}
             </div>
           )}
@@ -115,7 +115,7 @@ export default function OnboardingPage() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="w-full font-bold text-[1rem] py-[14px] rounded-s bg-chili text-white hover:bg-chili-deep transition-colors disabled:opacity-70 mt-[12px]"
+            className="w-full font-bold text-[1rem] py-[14px] rounded-s bg-dark text-white hover:bg-dark-deep transition-colors disabled:opacity-70 mt-[12px]"
           >
             {status === "loading" ? "Setting up..." : "Complete Registration"}
           </button>

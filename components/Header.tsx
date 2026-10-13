@@ -69,7 +69,7 @@ export default function Header() {
           className="font-display text-[1.5rem] font-bold tracking-[-0.01em] flex items-baseline gap-[2px] shrink-0"
         >
           BestRestaurant
-          <span className="text-chili italic">.</span>
+          <span className="text-dark italic">.</span>
           <span className="text-[0.62em] text-dark font-semibold ml-[2px]">
             lk
           </span>
@@ -79,19 +79,19 @@ export default function Header() {
         <nav className="flex gap-[36px] max-lg:hidden">
           <Link
             href="/"
-            className="text-[0.95rem] font-semibold text-ink py-[6px] border-b-[2px] border-transparent hover:border-chili transition-colors"
+            className="text-[0.95rem] font-semibold text-ink py-[6px] border-b-[2px] border-transparent hover:border-dark transition-colors"
           >
             Home
           </Link>
           <Link
             href="#trending"
-            className="text-[0.95rem] font-semibold text-ink py-[6px] border-b-[2px] border-transparent hover:border-chili transition-colors"
+            className="text-[0.95rem] font-semibold text-ink py-[6px] border-b-[2px] border-transparent hover:border-dark transition-colors"
           >
             Top 100
           </Link>
           <Link
             href="#"
-            className="text-[0.95rem] font-semibold text-ink py-[6px] border-b-[2px] border-transparent hover:border-chili transition-colors"
+            className="text-[0.95rem] font-semibold text-ink py-[6px] border-b-[2px] border-transparent hover:border-dark transition-colors"
           >
             Locations
           </Link>
@@ -139,7 +139,7 @@ export default function Header() {
 
               <Link
                 href="/login"
-                className="inline-flex items-center justify-center gap-[8px] font-bold text-[0.92rem] py-[11px] px-[20px] rounded-s bg-chili text-white hover:bg-chili-deep transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-[8px] font-bold text-[0.92rem] py-[11px] px-[20px] rounded-s bg-dark text-white hover:bg-dark-deep transition-colors whitespace-nowrap"
               >
                 + Add a restaurant
               </Link>

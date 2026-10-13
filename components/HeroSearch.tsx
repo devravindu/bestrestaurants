@@ -77,7 +77,7 @@ export default function HeroSearch() {
             
             <button 
               type="submit"
-              className="m-[6px] px-[32px] max-md:py-[12px] inline-flex items-center justify-center font-bold text-[0.95rem] rounded-s bg-chili text-white hover:bg-chili-deep transition-colors"
+              className="m-[6px] px-[32px] max-md:py-[12px] inline-flex items-center justify-center font-bold text-[0.95rem] rounded-s bg-dark text-white hover:bg-dark-deep transition-colors"
             >
               Search
             </button>
@@ -97,12 +97,12 @@ export default function HeroSearch() {
             <circle cx="240" cy="240" r="210" stroke="rgba(250,244,230,0.14)" strokeWidth="1"/>
             <circle cx="240" cy="240" r="150" fill="var(--color-turmeric)" opacity="0.12"/>
             <circle cx="240" cy="240" r="150" stroke="var(--color-turmeric)" strokeWidth="1.5" opacity="0.5"/>
-            <path d="M150 250c30-70 150-70 180 0-20 60-160 60-180 0z" fill="var(--color-chili)" opacity="0.85"/>
+            <path d="M150 250c30-70 150-70 180 0-20 60-160 60-180 0z" fill="var(--color-dark)" opacity="0.85"/>
             <ellipse cx="240" cy="248" rx="86" ry="18" fill="rgba(15,59,53,0.35)"/>
             <circle cx="190" cy="150" r="7" fill="var(--color-turmeric)"/>
             <circle cx="330" cy="175" r="5" fill="var(--color-white)" opacity="0.6"/>
             <circle cx="120" cy="330" r="6" fill="var(--color-turmeric)" opacity="0.7"/>
-            <circle cx="360" cy="330" r="9" fill="var(--color-chili)" opacity="0.6"/>
+            <circle cx="360" cy="330" r="9" fill="var(--color-dark)" opacity="0.6"/>
             <path d="M110 130q40-30 70 4" stroke="rgba(250,244,230,0.3)" strokeWidth="2" fill="none"/>
             <path d="M330 350q40 30 70-4" stroke="rgba(250,244,230,0.3)" strokeWidth="2" fill="none"/>
           </svg>

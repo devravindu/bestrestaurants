@@ -116,7 +116,8 @@ export default async function DashboardLayout({
       {/* STANDARD USER */}
       {userRole === "USER" && (
         <div className="flex-grow p-[24px]">
-          <p className="text-ink/60 text-[0.9rem]">Standard Account</p>
+          <p className="text-[0.75rem] font-bold text-dark uppercase tracking-wider mb-[4px]">Standard Acc
+          ount</p>
         </div>
       )}
 

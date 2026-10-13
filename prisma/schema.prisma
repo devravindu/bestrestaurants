@@ -38,6 +38,7 @@ model Restaurant {
   logoUrl             String?
   heroImageUrl        String?
   status              Status               @default(PENDING)
+  createdAt DateTime @default(now())
   isFeatured          Boolean              @default(false)
   avgRating           Float                @default(0)
   reviewCount         Int                  @default(0)

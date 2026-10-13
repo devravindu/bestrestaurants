@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { createClient } from "@/lib/supabase/server";
 import { Status } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { Store, Utensils, MessageSquare, ArrowRight } from "lucide-react";
 
 export default async function DashboardOverview() {
   const supabase = await createClient();
@@ -63,28 +64,72 @@ export default async function DashboardOverview() {
         </p>
       </header>
 
+
       {/* 1. STANDARD USER VIEW */}
       {userRole === "USER" && (
-        <div className="bg-white border border-line rounded-m p-[32px] text-center max-w-[600px] mt-[40px]">
-          <div className="text-[3rem] mb-[16px]">🏪</div>
+        <div className="flex-col items-center justify-center gap-6 md:flex flex-wrap">
+        <div className="group relative mt-10 w-full max-w-[600px] overflow-hidden rounded-2xl border  border-black/[0.08] bg-white p-8 text-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_20px_50px_rgba(0,0,0,0.10)] sm:p-10">
 
-          <h2 className="font-display text-[1.8rem] font-semibold mb-[12px]">
+          {/* Subtle decorative background */}
+          <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-black/[0.025] blur-2xl transition-all duration-700 group-hover:bg-black/[0.06]" />
+
+          {/* Restaurant icon */}
+          <div className="relative mx-auto mb-7 flex h-[76px] w-[76px] items-center justify-center rounded-2xl border border-black/[0.08] bg-gradient-to-br from-white to-neutral-100 shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:scale-105 group-hover:border-black/20 group-hover:shadow-lg">
+            <Store
+              size={34}
+              strokeWidth={1.5}
+              className="text-black transition-transform duration-500 group-hover:-rotate-3"
+            />
+          </div>
+
+          {/* Heading */}
+          <h2 className="relative mb-3 font-display text-3xl font-semibold tracking-tight text-black sm:text-[2.1rem]">
             Own a restaurant?
           </h2>
 
-          <p className="text-ink/70 mb-[24px]">
-            You currently have a standard account. Upgrade to a Vendor account
-            to list your restaurant, manage menus, and respond to reviews.
+          {/* Description */}
+          <p className="relative mx-auto mb-8 max-w-[430px] text-[15px] leading-7 text-neutral-500">
+            Turn your restaurant into a local favourite. Create your listing,
+            showcase your menu, and connect with customers through reviews.
           </p>
 
+          {/* Benefits */}
+          <div className="relative mb-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-xs font-medium tracking-wide text-neutral-600">
+            <span className="inline-flex items-center gap-2">
+              <Utensils size={15} strokeWidth={1.7} />
+              Manage your menu
+            </span>
+
+            <span className="hidden h-4 w-px bg-neutral-200 sm:block" />
+
+            <span className="inline-flex items-center gap-2">
+              <MessageSquare size={15} strokeWidth={1.7} />
+              Respond to reviews
+            </span>
+          </div>
+
+          {/* CTA */}
           <Link
             href="/dashboard/onboarding"
-            className="inline-flex items-center justify-center font-bold text-[1rem] py-[12px] px-[24px] rounded-s bg-chili text-white hover:bg-chili-deep transition-colors"
+            className="group/btn relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl bg-black px-7 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_6px_20px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-800 hover:shadow-[0_12px_28px_rgba(0,0,0,0.22)] active:translate-y-0 active:scale-[0.98] sm:w-auto"
           >
-            Register my Restaurant
+            <span>Register my Restaurant</span>
+
+            <ArrowRight
+              size={17}
+              strokeWidth={2}
+              className="transition-transform duration-300 group-hover/btn:translate-x-1"
+            />
           </Link>
+
+          <p className="relative mt-5 text-xs text-neutral-400">
+            Start building your restaurant&apos;s online presence.
+          </p>
+        </div>
         </div>
       )}
+
+
 
       {/* 2. VENDOR VIEW */}
       {userRole === "VENDOR" && (
