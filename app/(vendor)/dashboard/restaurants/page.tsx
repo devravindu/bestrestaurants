@@ -317,7 +317,7 @@ export default async function RestaurantApprovalsPage({
                           className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#292929] hover:shadow-lg hover:shadow-black/15 active:translate-y-0"
                         >
                           <Check size={17} />
-                          Approve restaurant
+                          Approve 
                         </button>
                       </form>
                     )}
@@ -352,6 +352,8 @@ export default async function RestaurantApprovalsPage({
                       </form>
                     )}
 
+                    {/* Preview button 
+                    
                     <a
                       href={`/restaurant/${restaurant.slug}`}
                       target="_blank"
@@ -361,6 +363,9 @@ export default async function RestaurantApprovalsPage({
                       Preview
                       <ExternalLink size={15} />
                     </a>
+                    */}
+
+                   
                   </div>
                 </div>
               </article>

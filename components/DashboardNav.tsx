@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Store,
-  Users,
 } from "lucide-react";
 
 const adminLinks = [
@@ -18,11 +17,6 @@ const adminLinks = [
     href: "/dashboard/restaurants",
     label: "Restaurants",
     icon: Store,
-  },
-  {
-    href: "/dashboard/users",
-    label: "Users",
-    icon: Users,
   },
 ];
 
